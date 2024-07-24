@@ -1,0 +1,8 @@
+untuk mengpublish 
+php artisan vendor:publish
+
+karena mau publish pagination
+pilih 5
+
+maka nanti akan muncul di folder resource
+difolder tersebut banyak pilihan style pagination

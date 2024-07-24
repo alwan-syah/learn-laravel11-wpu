@@ -16,8 +16,12 @@ Route::get('/about', function () {
 
 Route::get('/posts', function () {
 
-//   jika melakukan pencarian di dalam kategori tapi mencari judul diluar kategori, maka search, category dan author nya masuk
-    return view('posts', ['title' => 'Blog', 'posts' => Post::filter(request(['search','category','author']))->latest()->get()]);
+    //   jika melakukan pencarian di dalam kategori tapi mencari judul diluar kategori, maka search, category dan author nya masuk
+    // ganti get dengan paginate untuk menggunakan pagination
+    // ubah menjadi simplePagination untuk pagination lebih sederhana
+    // untuk ingin menampilkan berapa jumlah dalam paginate tentukan dalam fungsi paginate tersebut
+    // withQuery string untuk membawa jika masuk kategori atau author
+    return view('posts', ['title' => 'Blog', 'posts' => Post::filter(request(['search', 'category', 'author']))->latest()->paginate(5)->withQueryString()]);
 });
 
 Route::get('/posts/{post:slug}', function (Post $post) {
